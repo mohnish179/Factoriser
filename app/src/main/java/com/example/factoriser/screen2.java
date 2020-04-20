@@ -34,7 +34,7 @@ import java.util.Random;
 public class screen2 extends AppCompatActivity {
     private static final String TAG = "screen2";
     public static final String s_extra="com.example.factoriser.s_extra";
-    //public static final String s_extra2="com.example.factoriser.s_extra2";
+    
     static int score=0;
     int high_score;
     TextView counttime;
