@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Factoriser</string>
+    <string name="string1">Choose the Correct Option:</string>
+
+    <string name="opt1">opt1</string>
+    <string name="opt2">opt2</string>
+    <string name="opt3">opt3</string>
+    <string name="go_back">Go Back</string>
+    <string name="choose_the_correct_option">Choose Option:</string>
+
+</resources>
