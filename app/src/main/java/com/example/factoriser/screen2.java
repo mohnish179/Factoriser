@@ -28,13 +28,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Random;
-
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class screen2 extends AppCompatActivity {
     private static final String TAG = "screen2";
     public static final String s_extra="com.example.factoriser.s_extra";
-    
+
     static int score=0;
     int high_score;
     TextView counttime;
@@ -46,6 +46,7 @@ public class screen2 extends AppCompatActivity {
     ConstraintLayout lay,lay3;
 int counter=10;
 Vibrator z;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,9 @@ Vibrator z;
 
         int number=getIntent().getIntExtra(MainActivity.Numb_extra,0);
         high_score=get_no();
+        score=get_no1();
         Log.d(TAG, "onCreate: "+high_score);
+
         final int a[]=new int[number];
         int k=0;
         for(int i=1;i<=number;i++)
@@ -65,10 +68,17 @@ Vibrator z;
             if(number%i==0)
                 a[k++]=i;
         }
+        int rand;
         Random r=new Random();
         int b[]=new int[3];
         int n1,f;
+        if(k==2)
         b[k1=r.nextInt(3)]=a[r.nextInt(k)];
+        else
+        {
+            rand= ThreadLocalRandom.current().nextInt(1,k-1);
+            b[k1=r.nextInt(3)]=a[rand];
+        }
         for(int i=0;i<3;i++) {
             d:
             {
@@ -118,6 +128,7 @@ Vibrator z;
                 startActivity(abc);
             }
         });//button to go back
+
         counttime=findViewById(R.id.counttime);
        c=new CountDownTimer(10000,1000) {
             @Override
@@ -199,6 +210,11 @@ Vibrator z;
         pop_up.setMessage("It is Correct");
         c.cancel();
         score+=1;
+        if(score>=high_score)
+        {high_score=score;
+            put_no();
+        }
+        put_no1();
 
         pop_up.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
@@ -232,11 +248,9 @@ Vibrator z;
         pop_up.setTitle("Answer");
         pop_up.setMessage("It is wrong. The correct answer is "+v[k1].getText());
         c.cancel();;
-        if(score>high_score)
-        {high_score=score;
-            put_no();
-        }
+
         score=0;
+        put_no1();
         pop_up.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -271,6 +285,18 @@ Vibrator z;
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         return sharedPreferences.getInt("high_score", 0);
+    }
+    public void put_no1()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putInt("score",score);
+        editor.apply();
+    }
+    public int get_no1()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPreferences.getInt("score", 0);
     }
 public void bg_green(ConstraintLayout lay,ConstraintLayout lay3)
     {
