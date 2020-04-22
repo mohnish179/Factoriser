@@ -1,11 +1,18 @@
 <resources>
-    <string name="app_name">Factoriser</string>
+    <string name="app_name">Factorise</string>
     <string name="string1">Choose the Correct Option:</string>
-
     <string name="opt1">opt1</string>
     <string name="opt2">opt2</string>
+    <string name="choose_the_correct_option">Choose Option:</string>
+    <string name="enter_the_no_you_want_to_factorise">Enter the no. you want to factorise:</string>
+    <string name="enter_no_here">Enter no. here</string>
+    <string name="submit">Submit</string>
+
+    <string name="previous_high_score">Previous High Score:</string>
+    <string name="enter_number_here">Enter Number Here</string>
+    <string name="score">score</string>
+    <string name="high_score">High Score</string>
     <string name="opt3">opt3</string>
     <string name="go_back">Go Back</string>
-    <string name="choose_the_correct_option">Choose Option:</string>
-
+    <string name="_10">10</string>
 </resources>

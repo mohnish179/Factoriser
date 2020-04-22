@@ -2,24 +2,18 @@ package com.example.factoriser;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.net.LinkAddress;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -33,94 +27,79 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class screen2 extends AppCompatActivity {
     private static final String TAG = "screen2";
-    public static final String s_extra="com.example.factoriser.s_extra";
-
+    public static final String s_extra = "com.example.factorise.s_extra";
     static int score=0;
     int high_score;
-    TextView counttime;
+    TextView count_time;
     CountDownTimer c;
     @SuppressLint("ResourceType")
-
-    Button v[] = new Button[3];//Declaration of the 3 buttons
+    Button[] v = new Button[3];//Declaration of the 3 buttons
     public int k1;
     ConstraintLayout lay,lay3;
-int counter=10;
-Vibrator z;
+    int counter = 10;
+    Vibrator z;
+
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options);
-        Context context;
-        context=this;
-        lay=(ConstraintLayout) findViewById(R.id.options);
-        lay3=(ConstraintLayout) findViewById(R.id.lay3);//for landscape
-
+        lay = findViewById(R.id.options);
+        lay3 = findViewById(R.id.lay3);//for landscape
         int number=getIntent().getIntExtra(MainActivity.Numb_extra,0);
         high_score=get_no();
         score=get_no1();
-        Log.d(TAG, "onCreate: "+high_score);
-
-        final int a[]=new int[number];
+        final int[] a = new int[number];
         int k=0;
-        for(int i=1;i<=number;i++)
+        for (int i = 1; i <= number; i++)//finding all factors
         {
             if(number%i==0)
                 a[k++]=i;
         }
         int rand;
         Random r=new Random();
-        int b[]=new int[3];
-        int n1,f;
+        int[] b = new int[3];
+        int n1;
+        k1 = r.nextInt(3);//randomly choosing option no.
         if(k==2)
-        b[k1=r.nextInt(3)]=a[r.nextInt(k)];
+            b[k1] = a[r.nextInt(k)];//randomly choosing correct oprtion
         else
         {
             rand= ThreadLocalRandom.current().nextInt(1,k-1);
-            b[k1=r.nextInt(3)]=a[rand];
+            b[k1] = a[rand];//randomly choosing the correct option except 1 and the no. itself
         }
-        for(int i=0;i<3;i++) {
-            d:
+        for (int i = 0; i < 3; i++) {
+            if (i != k1)//checking whether it doesn't override correct ans
             {
-                if (k1 != i) {
-                    f = 0;
-                    n1 = r.nextInt(number);
-                    for (int j = 0; j < 3; j++) {
-                        if (n1 != b[j] && n1 != 0)
-                            f = 1;
-                        else {
-                            f = 0;
-                            i--;
-                            break d;
-                        }
-                    }
-                    for (int j = 0; j < k; j++) {
-                        if (a[j] != n1)
-                            f = 1;
-                        else {
-                            f = 0;
-                            i--;
-                            break d;
-                        }
-                    }
-                    if (f == 1)
-                        b[i] = n1;
-                    else
+                n1 = r.nextInt(number);//getting random no.
+                for (int j = 0; j < k; j++)//checking its not a factor
+                {
+                    if (a[j] == n1 || n1 == 0) {
                         i--;
+                        break;
+                    }
                 }
-            }
-        }
-        TextView x1 = (TextView) findViewById(R.id.m1);
-        //x1.setTextColor(getResources().getColor(R.color.White));
-        v[0] = (Button) findViewById(R.id.m2);
-        v[1] = (Button) findViewById(R.id.m3);
-        v[2] = (Button) findViewById(R.id.m4);
+                for (int j = 0; j < 3; j++)//checking if its not any other option
+                {
+                    if (n1 == b[j]) {
+                        i--;
+                        break;
+                    }
+                }
+                b[i] = n1;//assigning the wrong option
+            }//k1 if
+        }//i_loop
+        TextView x1 = findViewById(R.id.m1);
+        v[0] = findViewById(R.id.m2);
+        v[1] = findViewById(R.id.m3);
+        v[2] = findViewById(R.id.m4);
         v[0].setText(Integer.toString(b[0]));
         v[1].setText(Integer.toString(b[1]));
         v[2].setText(Integer.toString(b[2]));
         z = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-//declaration of all objects
-        Button x5 = (Button) findViewById(R.id.m5);
+        //declaration of all objects
+        Button x5 = findViewById(R.id.m5);
         x5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,17 +107,16 @@ Vibrator z;
                 startActivity(abc);
             }
         });//button to go back
-
-        counttime=findViewById(R.id.counttime);
-       c=new CountDownTimer(10000,1000) {
+        count_time = findViewById(R.id.counttime);
+        c = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                counttime.setText(String.valueOf(counter));
+                count_time.setText(String.valueOf(counter));
                 counter--;
             }
             @Override
             public void onFinish() {
-                counttime.setText("Oh");
+                count_time.setText("Oh");
                 openDialog3();
             }
 
@@ -247,7 +225,7 @@ Vibrator z;
          AlertDialog.Builder pop_up = new AlertDialog.Builder(this);
         pop_up.setTitle("Answer");
         pop_up.setMessage("It is wrong. The correct answer is "+v[k1].getText());
-        c.cancel();;
+        c.cancel();
 
         score=0;
         put_no1();

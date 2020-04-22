@@ -11,7 +11,6 @@
 
     <TextView
         android:id="@+id/tv1"
-        android:elevation="6dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="41dp"
@@ -20,7 +19,7 @@
         android:layout_marginEnd="41dp"
         android:layout_marginRight="41dp"
         android:layout_marginBottom="10dp"
-        android:text="Enter the no. you want to factorise:"
+        android:text="@string/enter_the_no_you_want_to_factorise"
         android:textAlignment="center"
         android:textColor="#E91E63"
         android:textSize="24sp"
@@ -40,9 +39,8 @@
         android:layout_marginEnd="41dp"
         android:layout_marginRight="41dp"
         android:layout_marginBottom="25dp"
-        android:elevation="6dp"
         android:ems="10"
-        android:hint="Enter Number Here"
+        android:autofillHints=" "
         android:inputType="number"
         android:textColor="#00BCD4"
         android:textColorHighlight="#FFC107"
@@ -50,6 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bt1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:hint="@string/enter_number_here"
         app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
     <Button
@@ -64,8 +63,7 @@
         android:layout_marginRight="41dp"
         android:layout_marginBottom="363dp"
         android:background="#00BCD4"
-        android:elevation="7dp"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="#5C00FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +74,7 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="score"
+        android:text="@string/score"
         android:textColor="#FFFFFF"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +86,7 @@
         android:id="@+id/hs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High Score"
+        android:text="@string/high_score"
         android:layout_marginBottom="190dp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

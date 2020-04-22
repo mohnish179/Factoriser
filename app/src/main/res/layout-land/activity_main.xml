@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:name="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
@@ -19,40 +18,46 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
-        android:text="Enter the no. you want to factorise:"
+        android:layout_alignParentStart="true"
         android:textSize="30sp"
         android:textAlignment="center"
         android:gravity="center_horizontal"
      android:textColor="#E91E63"
 
-        />
+        android:layout_marginStart="60dp"
+        android:text="@string/enter_the_no_you_want_to_factorise" />
 
     <EditText
         android:id="@+id/et1"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
- android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="60dp"
         android:layout_alignParentTop="true"
-    android:layout_marginTop="90dp"
+        android:layout_alignParentLeft="true"
         android:ems="10"
-        android:hint="Enter no. here"
-  android:textSize="30sp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="90dp"
         android:inputType="number"
         android:textColor="#00BCD4"
-        android:textColorHint="#9C27B0"></EditText>
+        android:autofillHints=" "
+        android:hint="@string/enter_no_here"
+        android:textColorHint="#9C27B0"
+        android:textSize="30sp"
+        tools:ignore="RelativeOverlap" />
 
 
     <Button
         android:id="@+id/bt1"
         android:layout_width="250dp"
         android:layout_height="60dp"
-       android:layout_marginTop="210dp"
+        android:layout_marginStart="60dp"
         android:background="#00BCD4"
-        android:text="Submit"
+        android:layout_marginTop="210dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="60dp"
-        android:textColor="#5C00FF"></Button>
+        android:text="@string/submit"
+        android:textColor="#5C00FF" />
 
     <TextView
         android:id="@+id/score"
@@ -65,9 +70,13 @@
         android:layout_marginTop="140dp"
         android:layout_marginEnd="144dp"
         android:layout_marginRight="144dp"
-        android:text="Current score:"
+        android:layout_toStartOf="@id/tv1"
         android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:layout_toLeftOf="@id/tv1"
+        android:layout_toEndOf="@id/tv1"
+        android:layout_toRightOf="@id/tv1"
+        android:text="@string/score"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/hs"
@@ -78,12 +87,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="320dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginRight="46dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginRight="117dp"
         android:layout_marginBottom="77dp"
-        android:text="Previous High Score: "
+        android:layout_toStartOf="@id/score"
+        android:layout_toLeftOf="@id/score"
+        android:text="@string/previous_high_score"
         android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

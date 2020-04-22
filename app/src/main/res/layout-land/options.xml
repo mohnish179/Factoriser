@@ -87,6 +87,7 @@
         android:textColor="#5C00FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="136dp"
         tools:targetApi="lollipop" />
 
     <TextView
@@ -97,7 +98,7 @@
         android:layout_marginStart="148dp"
         android:layout_marginLeft="148dp"
         android:layout_marginBottom="48dp"
-        android:text="10"
+        android:text="@string/_10"
         android:textColor="@color/White"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
